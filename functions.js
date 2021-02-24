@@ -4,7 +4,7 @@ function shuffler(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array
-  }
+};
 
 function createPlayer(name){
  
@@ -12,7 +12,7 @@ function createPlayer(name){
     players.push(newPlayer);
     
       
-}
+};
 
 function addPlayer(name) {
 
@@ -21,7 +21,7 @@ function addPlayer(name) {
     newLine.innerText = name;
     list.appendChild(newLine);
    
-}
+};
 
 function tableSeat (array,position){
     
@@ -36,7 +36,7 @@ function tableSeat (array,position){
         
     }
     
-}   
+};
 
 function generatePosition (array) {
 
@@ -55,7 +55,7 @@ function generatePosition (array) {
        
     tableArea.appendChild(table);
     
-}
+};
 
 function oppositePairing(array1,array2){
 
@@ -69,7 +69,7 @@ function oppositePairing(array1,array2){
         matches.push([array1[i],array2[array2.length-i-1]]);
     }
     console.log(matches);
-}
+};
 
 function randomPairing(array1,array2){
     players= [...array1,...array2]
@@ -85,4 +85,4 @@ function randomPairing(array1,array2){
         matches.push(match);
     }
     console.log(matches);
-}
+};
