@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+     
+  </head>
+  <body>
+      <section>
+        <div class="container">
+          <div class="main page active" >
+            <input type="text" name="aggiungi giocatore" id="nameinput"><input class="confbtn" type="submit" value='Aggiungi Giocatore'>
+      
+              <ol class="playerlist">
+            
+              </ol>
+            <input id="generator" value=" crea tavolo" type="button">
+          </div>
+
+          <div id="tablearea" class=" table page">
+            <form id="pairs">
+              Pairings
+              <input type="submit" value="Opposti" id="oppo">
+              <input type="submit" value="Random" id="random">
+            </form> 
+
+
+          </div>
+        
+        <div class ="turns page"></div>
+      </div>
+    </section>
+  </body>
+  <script src="functions.js" charset="utf-8"></script>
+  <script src="mtgpairings.js" charset="utf-8"></script>
+</html>
