@@ -33,14 +33,17 @@ class Player {
 }
 let players = [];
 invia.addEventListener('click', () =>{
-
-  createPlayer(nameInput.value);
-  addPlayer(nameInput.value);
-  nameInput.value=''; 
+  if(nameInput.value !=''){
+    createPlayer(nameInput.value);
+    addPlayer(nameInput.value);
+    nameInput.value=''; 
+  }else{
+    return
+  }
 });
 
 nameInput.addEventListener('keypress', (e) =>{
-  if(e.key === 'Enter'){
+  if(e.key === 'Enter' && nameInput.value != ''){
     createPlayer(nameInput.value);
     addPlayer(nameInput.value);
     nameInput.value='';

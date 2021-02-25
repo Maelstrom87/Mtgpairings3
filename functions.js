@@ -7,11 +7,12 @@ function shuffler(array) {
 };
 
 function createPlayer(name){
- 
+   
     let newPlayer = new Player(name)
     players.push(newPlayer);
     
       
+         
 };
 
 function addPlayer(name) {
@@ -20,6 +21,13 @@ function addPlayer(name) {
     newLine.classList.add('list');
     newLine.innerText = name;
     list.appendChild(newLine);
+    const deleteBtn = document.createElement('input');
+    deleteBtn.setAttribute('type' , 'submit');
+    deleteBtn.setAttribute('ID', 'delete-button');
+    deleteBtn.setAttribute('value', 'Cancella Giocatore');
+    newLine.appendChild(deleteBtn);
+
+
    
 };
 
