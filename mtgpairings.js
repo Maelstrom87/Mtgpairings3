@@ -16,8 +16,9 @@ const matches=[];
 let firstHalf =[];
 let secondHalf=[];
 let bye = 'bye';
-
+let playersName =[];
 let td ;
+let counter = 0;
 
 
 class Player {
@@ -34,7 +35,7 @@ class Player {
 let players = [];
 invia.addEventListener('click', () =>{
   if(nameInput.value !=''){
-    createPlayer(nameInput.value);
+    //createPlayer(nameInput.value);
     addPlayer(nameInput.value);
     nameInput.value=''; 
   }else{
@@ -44,7 +45,7 @@ invia.addEventListener('click', () =>{
 
 nameInput.addEventListener('keypress', (e) =>{
   if(e.key === 'Enter' && nameInput.value != ''){
-    createPlayer(nameInput.value);
+    //createPlayer(nameInput.value);
     addPlayer(nameInput.value);
     nameInput.value='';
   }
@@ -53,22 +54,27 @@ nameInput.addEventListener('keypress', (e) =>{
 generator.addEventListener('click',() =>{
   mainPage.classList.remove('active');
   tablePage.classList.add('active');
+  createPlayer(playersName);
   shuffler(players);
   generatePosition(players);
 });
 
 oppo.addEventListener('click',()=>{
-  tablePage.classList.remove('active');
-  turnsPage.classList.add('active');
   oppositePairing(firstHalf,secondHalf);
+  //tablePage.classList.remove('active');
+  //turnsPage.classList.add('active');
+  
 
 });
+
 random.addEventListener('click',()=>{
-  tablePage.classList.remove('active');
-  turnsPage.classList.add('active');
   randomPairing(firstHalf,secondHalf);
+  //tablePage.classList.remove('active');
+  //turnsPage.classList.add('active');
+  
 
 });
+
 
   
 

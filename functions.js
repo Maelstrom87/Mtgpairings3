@@ -6,26 +6,45 @@ function shuffler(array) {
     return array
 };
 
-function createPlayer(name){
-   
+function createPlayer(array){
+   /*
     let newPlayer = new Player(name)
     players.push(newPlayer);
-    
-      
+    */
+    for (var i = 0; i< array.length; i++){
+        let newPlayer = new Player(array[i]);
+        players.push(newPlayer) ;
+    }
          
 };
 
 function addPlayer(name) {
-
-    const newLine = document.createElement('li');
-    newLine.classList.add('list');
-    newLine.innerText = name;
-    list.appendChild(newLine);
-    const deleteBtn = document.createElement('input');
-    deleteBtn.setAttribute('type' , 'submit');
-    deleteBtn.setAttribute('ID', 'delete-button');
-    deleteBtn.setAttribute('value', 'Cancella Giocatore');
-    newLine.appendChild(deleteBtn);
+    if(!playersName.includes(name)){
+            
+        playersName.push(name);
+                
+        const newLine = document.createElement('li');
+        newLine.classList.add('list');
+        newLine.innerText = name;
+        list.appendChild(newLine);
+        const deleteBtn = document.createElement('input');
+        deleteBtn.setAttribute('type' , 'submit');
+        deleteBtn.setAttribute('ID', 'delete-button');
+        deleteBtn.setAttribute('value', 'Cancella Giocatore');
+    
+        deleteBtn.addEventListener('click',()=>{
+            playersName.splice(playersName.indexOf(name),1);
+            deleteBtn.remove();
+            newLine.remove();
+        
+        })
+        newLine.appendChild(deleteBtn);  
+        counter++;      
+    }else{
+        alert('nome giocatore già registrato');
+    }
+    
+    
 
 
    
@@ -77,6 +96,7 @@ function oppositePairing(array1,array2){
         matches.push([array1[i],array2[array2.length-i-1]]);
     }
     console.log(matches);
+    return false;
 };
 
 function randomPairing(array1,array2){
@@ -93,4 +113,5 @@ function randomPairing(array1,array2){
         matches.push(match);
     }
     console.log(matches);
+    return false;
 };
