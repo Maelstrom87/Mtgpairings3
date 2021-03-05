@@ -70,3 +70,20 @@ li:before {
 }
 
   
+.match-number{
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0px 0px 20px #00000020;
+    padding: 20px;
+    border-radius: 8px;
+   
+}
+.match-number.li::before{
+    color: blue;
+} 
+
+#next-match{
+    float: right;
+}

@@ -15,6 +15,11 @@ function createPlayer(array){
         let newPlayer = new Player(array[i]);
         players.push(newPlayer) ;
     }
+    if (players.length % 2){
+        let byePlayer = new Player('bye')
+        players.push(byePlayer);
+    }
+    
          
 };
 
@@ -87,24 +92,21 @@ function generatePosition (array) {
 function oppositePairing(array1,array2){
 
     if(array1.length < array2.length){
-        array1.push(bye);
+        array1.push(byePlayer);
     }
     if(array1.length > array2.length){
-        array2.push(bye);
+        array2.push(byePlayer);
     }    
     for(var i=0; i<array2.length; i++){
         matches.push([array1[i],array2[array2.length-i-1]]);
     }
     console.log(matches);
-    return false;
+    return matches;
 };
 
 function randomPairing(array1,array2){
     players= [...array1,...array2]
-    if (players.length % 2){
-        players.push(bye);
-    }
-    
+
     shuffler(players)
     let half = players.length /2 ;
 
@@ -113,5 +115,46 @@ function randomPairing(array1,array2){
         matches.push(match);
     }
     console.log(matches);
-    return false;
+    return matches;
 };
+
+function printPairing(array){
+    const newLine = document.createElement('li');
+ 
+    for (var a=0; a<array.length; a++){
+        const newPair = document.createElement('ol');
+        const matchNumber = document.createElement('li');
+        matchNumber.classList.add('match-number')
+        matchNumber.appendChild(newPair);
+        listWrapper.appendChild(matchNumber);
+        for (var b=0; b<2; b++){
+            const newLine = document.createElement('li');
+            newLine.innerText = array[a][b].nome;
+            newPair.appendChild(newLine);
+            resultTab(newLine,b)
+           }
+
+    }
+
+}
+
+function resultTab(line,number){
+    
+    const wins = document.createElement('input');
+    wins.setAttribute('type','number');
+    wins.setAttribute('min', '0');
+    wins.setAttribute('max','2');
+    
+    line.appendChild(wins);
+    if(!number){
+                
+        const drawLine = document.createElement('p');
+        drawLine.innerText='pareggi';
+        const draw = document.createElement('input');
+        draw.setAttribute('type','number');
+        draw.setAttribute('min', '0');
+        draw.setAttribute('max','1');
+        drawLine.appendChild(draw);
+        line.appendChild(drawLine);
+    }
+}

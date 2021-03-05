@@ -15,10 +15,12 @@ const random = document.querySelector('#random');
 const matches=[];
 let firstHalf =[];
 let secondHalf=[];
-let bye = 'bye';
+
 let playersName =[];
 let td ;
 let counter = 0;
+let listWrapper = document.querySelector('#list-wrapper');
+
 
 
 class Player {
@@ -59,19 +61,25 @@ generator.addEventListener('click',() =>{
   generatePosition(players);
 });
 
-oppo.addEventListener('click',()=>{
+oppo.addEventListener('click',(e)=>{
+  e.preventDefault();
+ 
   oppositePairing(firstHalf,secondHalf);
-  //tablePage.classList.remove('active');
-  //turnsPage.classList.add('active');
+  tablePage.classList.remove('active');
+  turnsPage.classList.add('active');
+  printPairing(matches);
   
-
+  return false;
 });
 
-random.addEventListener('click',()=>{
+random.addEventListener('click',(e)=>{
+  e.preventDefault();
+ 
   randomPairing(firstHalf,secondHalf);
-  //tablePage.classList.remove('active');
-  //turnsPage.classList.add('active');
-  
+  tablePage.classList.remove('active');
+  turnsPage.classList.add('active');
+  printPairing(matches);
+  return false;
 
 });
 
