@@ -15,11 +15,15 @@ const random = document.querySelector('#random');
 const matches=[];
 let firstHalf =[];
 let secondHalf=[];
+let allPlayers=[];
 
 let playersName =[];
 let td ;
 let counter = 0;
 let listWrapper = document.querySelector('#list-wrapper');
+const newMatch = document.querySelector('#next-match');
+
+const confirm = document.querySelector('#confirm');
 
 
 
@@ -29,6 +33,7 @@ class Player {
     this.nome = nome;
     this.punteggio = 0;
     this.avversari = [];
+    this.risultati = [];
 
   }
 
@@ -47,7 +52,7 @@ invia.addEventListener('click', () =>{
 
 nameInput.addEventListener('keypress', (e) =>{
   if(e.key === 'Enter' && nameInput.value != ''){
-    //createPlayer(nameInput.value);
+    //negare lo spazio come primo input
     addPlayer(nameInput.value);
     nameInput.value='';
   }
@@ -82,6 +87,15 @@ random.addEventListener('click',(e)=>{
   return false;
 
 });
+
+confirm.addEventListener('click',(e)=>{
+  e.preventDefault();
+  
+  resultsCheck(matches);
+});
+
+
+
 
 
   

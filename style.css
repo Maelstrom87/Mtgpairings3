@@ -87,3 +87,15 @@ li:before {
 #next-match{
     float: right;
 }
+#is-winner{
+    background-color: lawngreen;
+}
+#is-loser{
+    background-color: crimson;
+}
+#is-draw{
+    background-color: coral;
+}
+#is-error{
+    background-color: grey;
+}

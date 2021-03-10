@@ -14,6 +14,7 @@ function createPlayer(array){
     for (var i = 0; i< array.length; i++){
         let newPlayer = new Player(array[i]);
         players.push(newPlayer) ;
+        allPlayers.push(newPlayer);
     }
     if (players.length % 2){
         let byePlayer = new Player('bye')
@@ -131,22 +132,24 @@ function printPairing(array){
             const newLine = document.createElement('li');
             newLine.innerText = array[a][b].nome;
             newPair.appendChild(newLine);
-            resultTab(newLine,b)
+            resultTab(newLine,array[a][b].nome,b,a)
            }
 
     }
 
-}
+};
 
-function resultTab(line,number){
+function resultTab(line,nome,player,a){
     
     const wins = document.createElement('input');
     wins.setAttribute('type','number');
     wins.setAttribute('min', '0');
     wins.setAttribute('max','2');
-    
+    //wins.innerHTML = `id=${nome}`;
+    wins.setAttribute('id', `${nome}`)
+    const winResult = document.querySelector(`#${nome}`)
     line.appendChild(wins);
-    if(!number){
+    if(!player){
                 
         const drawLine = document.createElement('p');
         drawLine.innerText='pareggi';
@@ -154,7 +157,65 @@ function resultTab(line,number){
         draw.setAttribute('type','number');
         draw.setAttribute('min', '0');
         draw.setAttribute('max','1');
+        draw.innerHTML= `id=draw${a}`
+        const winResult = document.querySelector(`#draw${nome}`)
         drawLine.appendChild(draw);
         line.appendChild(drawLine);
     }
-}
+};
+
+function resultsCheck (pairArray){
+    let resultsArray = [];
+    let error=[];
+    let w ;
+    for (let m = 0; m < pairArray.length ; m++){
+        resultsArray.push([]);
+        for (let g = 0 ;  g <2; g++ ){
+            let iddi = pairArray[m][g].nome;
+            w = document.querySelector(`#${iddi}`);
+            resultsArray[m].push(w.value); //errore nel secondo loop
+        }
+    }
+    console.log(resultsArray);
+    for( let n= 0;n<resultsArray.length;n++){
+        const p1 =parseInt(resultsArray[n][0]),
+            p2=parseInt(resultsArray[n][1]);
+            p1pointer = document.querySelector(`#${pairArray[n][0].nome}`)
+            p2pointer = document.querySelector(`#${pairArray[n][1].nome}`)
+            const g1 = pairArray[n][0];
+            const g2 =pairArray[n][1]
+        if(p1 + p2 < 4 ){
+            if (p1>p2){
+                p1pointer.setAttribute('id','is-winner');
+                p2pointer.setAttribute('id','is-loser');
+                g1.risultati.push([p1,p2,'w'])
+                g2.risultati.push([p2,p1,'l'])
+            }else if(p1<p2){
+                p1pointer.setAttribute('id','is-loser');
+                p2pointer.setAttribute('id','is-winner');
+                g1.risultati.push([p1,p2,'l'])
+                g2.risultati.push([p2,p1,'w'])
+            }else {
+                p1pointer.setAttribute('id','is-draw');
+                p2pointer.setAttribute('id','is-draw');
+                g1.push({risultati:[p1,p2,'d']})
+                g2.push({risultati:[p2,p1,'d']})
+            }
+        }else{
+            p1pointer.setAttribute('id','is-error');
+            p2pointer.setAttribute('id','is-error');
+            if(!error){
+                
+                error.push(n+1);
+            } else {error.push(n+1);}
+        }
+
+    }
+    if(!error.length>0){
+        newMatch.removeAttribute('disabled');
+    }else{
+        for(let e of error)
+        alert(`errore di registrazione nel match ${e}` )
+    }
+};
+
